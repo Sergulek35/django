@@ -25,10 +25,8 @@ def date_time():
     # Если даты совпадают, отправляем сообщение
     user_chat = User.objects.all()
     for us in user_chat:
-        # print(us.user_chat)
         for i in Birthday_boy.objects.filter(user=us.id):
             date_birthday = float(f'{int(i.day)}.{i.month.id}')
-            print(date_birthday)
             if date_birthday == date_now:
                 chat_id = us.user_chat
                 message = f'{i.surname} {i.name} - празднует сегодня день рождения\n' \

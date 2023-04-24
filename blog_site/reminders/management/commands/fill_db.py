@@ -70,7 +70,7 @@ def add_bot():
                 bot.send_message(chat_id, 'Не верный ввод ДНЯ рождения')
 
             else:
-                Day.objects.get_or_create(day=info[2])
+                # Day.objects.get_or_create(day=info[2])
 
                 day = Day.objects.get(day=info[2])
                 id = Month.objects.get(id=info[3])
