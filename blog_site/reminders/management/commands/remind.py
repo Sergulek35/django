@@ -14,8 +14,9 @@ bot = telebot.TeleBot(TOKEN)
 date_time = datetime.now()
 date_now = float(f'{date_time.day}.{date_time.month}')  # текущая дата
 
-
 class Command(BaseCommand):
+    def __init__(self):
+        super().__init__()
 
     def handle(self, *args, **options):
         date_time()
@@ -26,7 +27,7 @@ def date_time():
     user_chat = User.objects.all()
     for us in user_chat:
         for i in Birthday_boy.objects.filter(user=us.id):
-            date_birthday = float(f'{int(i.day)}.{i.month.id}')
+            date_birthday = float(f'{i.day}.{i.month.id}')
             if date_birthday == date_now:
                 chat_id = us.user_chat
                 message = f'{i.surname} {i.name} - празднует сегодня день рождения\n' \

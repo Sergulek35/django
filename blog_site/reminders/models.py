@@ -4,8 +4,8 @@ from django.db import models
 class Day(models.Model):
     day = models.IntegerField(unique=True)
 
-    def __int__(self):
-        return self.day
+    def __str__(self):
+        return '{}'.format(self.day)
 
 
 class Month(models.Model):
@@ -14,10 +14,9 @@ class Month(models.Model):
     def __str__(self):
         return self.month
 
-
 class User(models.Model):
     user_name = models.CharField(max_length=32)
-    user_chat = models.IntegerField(unique=True)
+    user_chat = models.PositiveIntegerField(unique=True)
 
     def __str__(self):
         return self.user_name
@@ -28,7 +27,7 @@ class Birthday_boy(models.Model):
     surname = models.CharField(max_length=32)
 
     def __str__(self):
-        return self.surname
+        return f'{self.surname} {self.name}   ({self.day} : {self.month})'
 
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
     month = models.ForeignKey(Month, on_delete=models.CASCADE)

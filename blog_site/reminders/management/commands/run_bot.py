@@ -16,6 +16,7 @@ month_list = ['Января', 'Февраля', 'Марта', 'Апреля', '�
 
 class Command(BaseCommand):
 
+
     def handle(self, *args, **options):
         add_bot()
 
@@ -35,9 +36,12 @@ def examination(message):
 
 @bot.message_handler(commands=['start'])
 def examination(message):
+    # print(message)
     hey = message.from_user.first_name
-    bot.reply_to(message, f'Добро пожаловать, {hey}')
-    bot.reply_to(message, '👋')
+    bot.reply_to(message, f'Добро пожаловать, {hey}\n'
+                          f'-------------------------------- \n'
+                          f'Ваш код для сайта {message.chat.id}\n'
+                          f'👋')
     # print(message.chat.id)
     User.objects.get_or_create(user_name=hey, user_chat=message.chat.id)
     for mot in month_list:
@@ -53,7 +57,7 @@ def birthday(message):
     birthday = Birthday_boy.objects.filter(user=user_chat)
     for i in birthday:
         chat_id = message.chat.id
-        bot.send_message(chat_id, f'{i} {i.name}({int(i.day)}: {i.month})')
+        bot.send_message(chat_id, i)
 
 
 def add_bot():
@@ -70,7 +74,6 @@ def add_bot():
                 bot.send_message(chat_id, 'Не верный ввод ДНЯ рождения')
 
             else:
-                # Day.objects.get_or_create(day=info[2])
 
                 day = Day.objects.get(day=info[2])
                 id = Month.objects.get(id=info[3])
