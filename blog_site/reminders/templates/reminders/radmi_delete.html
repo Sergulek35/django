@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Удаление
+{% endblock%}
+{% load static %}
+{% block index %}
+
+<!-- Page content-->
+<section class="py-5" xmlns="http://www.w3.org/1999/html">
+    <div class="container px-5">
+        <!-- Contact form-->
+        <div class="bg-light rounded-4 py-5 px-4 px-md-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3"><i
+                        class="bi bi-envelope"></i></div>
+
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+
+
+
+
+    Удалить именинника ?
+                    <hr>
+<h4>{{object.surname}}
+{{object.name }}
+</h4>
+                    <hr>
+    Вы уверены?
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">Да</button>
+    </form>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+
+</section>
+
+
+
+{% endblock %}

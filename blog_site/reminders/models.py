@@ -14,12 +14,24 @@ class Month(models.Model):
     def __str__(self):
         return self.month
 
+
 class User(models.Model):
     user_name = models.CharField(max_length=32)
     user_chat = models.PositiveIntegerField(unique=True)
 
     def __str__(self):
         return self.user_name
+
+
+class Reminder(models.Model):
+    reminder = models.TextField()
+
+    def __str__(self):
+        return f'[  {self.reminder}  ] - напомнить - ({self.day} : {self.month})'
+
+    day = models.ForeignKey(Day, on_delete=models.CASCADE)
+    month = models.ForeignKey(Month, on_delete=models.CASCADE)
+    user = models.ManyToManyField(User)
 
 
 class Birthday_boy(models.Model):

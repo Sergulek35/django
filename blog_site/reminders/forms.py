@@ -1,10 +1,10 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from reminders.models import Birthday_boy, User
+from reminders.models import Birthday_boy, User, Reminder
 
 
 class HumanCodForm(forms.Form):
-    user_cod = forms.IntegerField(label='Ваш код', help_text='Нажмите Enter')
+    user_cod = forms.IntegerField(label='Ваш код')
 
     def clean(self):
         super(HumanCodForm, self).clean()
@@ -29,4 +29,17 @@ class HumanForm(forms.ModelForm):
             'name': _('Имя'),
             'day': _('Число'),
             'month': _('Месяц'),
+        }
+
+class MessagesForm(forms.ModelForm):
+
+    class Meta:
+        model = Reminder
+        fields = ['reminder', 'day', 'month']
+
+        labels = {
+
+            'day': _('Число'),
+            'month': _('Месяц'),
+            'reminder': _('Сообщение')
         }
