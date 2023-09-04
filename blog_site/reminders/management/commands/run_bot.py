@@ -3,7 +3,8 @@ from os import getenv
 from dotenv import load_dotenv
 from django.core.management.base import BaseCommand
 from django.core.exceptions import ObjectDoesNotExist
-from reminders.models import Month, Day, Birthday_boy, User, Reminder
+from reminders.models import Month, Day, Birthday_boy, TelegramCod, Reminder
+from user_reminders.models import SiteUser
 
 load_dotenv()
 
@@ -47,7 +48,7 @@ def examination(message):
                           f'Ваш код для сайта {message.chat.id}\n'
                           f'👋')
     # print(message.chat.id)
-    User.objects.get_or_create(user_name=hey, user_chat=message.chat.id)
+    TelegramCod.objects.get_or_create(telegram_cod=message.chat.id)
     for mot in month_list:
         Month.objects.get_or_create(month=mot)
     for d in range(1, 32):
@@ -57,7 +58,7 @@ def examination(message):
 @bot.message_handler(commands=['birthday'])
 def birthday(message):
     # print(message)
-    user_chat = User.objects.get(user_chat=message.chat.id)
+    user_chat = SiteUser.objects.get(user_chat=message.chat.id)
     birthday = Birthday_boy.objects.filter(user=user_chat)
     for i in birthday:
         chat_id = message.chat.id
@@ -66,7 +67,7 @@ def birthday(message):
 
 @bot.message_handler(commands=['reminder'])
 def reminder(message):
-    user_chat = User.objects.get(user_chat=message.chat.id)
+    user_chat = SiteUser.objects.get(user_chat=message.chat.id)
     reminder = Reminder.objects.filter(user=user_chat)
     for i in reminder:
         chat_id = message.chat.id
@@ -90,7 +91,7 @@ def add_bot():
         try:
             day = Day.objects.get(day=info[-2])
             id = Month.objects.get(id=info[-1])
-            user_chat = User.objects.get(user_chat=message.chat.id)
+            user_chat = SiteUser.objects.get(user_chat=message.chat.id)
 
             if len(info) == 4:
 

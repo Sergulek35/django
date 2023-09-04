@@ -8,23 +8,32 @@
 
 <header class="py-5">
  <hr>
-{% block index %}
 
+{% block index %}
     <div class="container px-5 pb-5">
+
         <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase">{{date_time}}</div></div>
 
-  <h2 class="display-5 fw-bolder"> Добро пожаловать<p><span class="text-gradient d-inline">{{user_chat}}</span></h2>
-
+  <h2 class="display-5 fw-bolder"> Добро пожаловать,   <span class="text-gradient d-inline">{{user.username}}</span></h2>
+        {% if user.image %}
+           <img src="{{user.image.url}}" width="200">
+        {% else %}
+            <img src="{% static 'assets/non_avatar.png' %}" width="200">
+            {% endif %}
 
         <div class="row gx-5 align-items-center">
 
             <div class="col-xxl-5">
+
                 <!-- Header text content-->
 
+                 <h4> Именинники ({{count}})</h4>
+                 <h4> Напоминания ({{ count_messages}})</h4>
                 <div class="text-center text-xxl-start">
 
 
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+
                     </div>
 
                 </div>
@@ -34,16 +43,16 @@
 
 
                 <div class="d-flex justify-content-center mt-5 mt-xxl-0">
-                    <div class="profile bg-gradient-primary-to-secondary">
 
-                        <img class="profile-img" src="{% static 'assets/profile.png' %}" alt="..."/>
+
+                        <img src="{% static 'assets/profile.png' %}" width="600" >
+
 
 
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 </header>
 

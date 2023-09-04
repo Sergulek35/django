@@ -21,7 +21,7 @@
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- Navigation-->
- {% if in_flag%}
+
             <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
                 <div class="container px-5">
 
@@ -30,18 +30,24 @@
 
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
 
-
+                        {% if user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'blog_site:index'%}">ГЛАВНАЯ</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'blog_site:radmi_list' %}">ИМЕНИННИКИ</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'blog_site:messages' %}">СООБЩЕНИЕ</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'blog_site:radmi_human' %}">ВЫХОД</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'users:logout' %}">ВЫХОД</a></li>
+
+                            {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'users:register' %}">РЕГИСТРАЦИЯ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">ВХОД</a></li>
+                            {% endif %}
 
 
                         </ul>
+
                          </div>
                 </div>
             </nav>
-{%endif%}
+
            {% block index %}{% endblock %}
 
         <!-- Bootstrap core JS-->
