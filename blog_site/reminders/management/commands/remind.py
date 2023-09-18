@@ -2,7 +2,8 @@ import telebot
 from os import getenv
 from dotenv import load_dotenv
 from django.core.management.base import BaseCommand
-from reminders.models import Birthday_boy, User, Reminder
+from reminders.models import Birthday_boy, Reminder
+from user_reminders.models import SiteUser
 from datetime import datetime
 import requests
 
@@ -25,7 +26,7 @@ class Command(BaseCommand):
 
 def date_time():
     # Если даты совпадают, отправляем сообщение
-    user_chat = User.objects.all()
+    user_chat = SiteUser.objects.all()
     for us in user_chat:
         for i in Birthday_boy.objects.filter(user=us.id):
             date_birthday = float(f'{i.day}.{i.month.id}')

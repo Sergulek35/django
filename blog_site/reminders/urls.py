@@ -5,7 +5,6 @@ app_name = 'reminders'
 
 urlpatterns = [
 
-    path('', views.RadmiHumanView.as_view(), name='radmi_human'),
     path('radmi-delete/<int:pk>/', views.RadmiDeleteView.as_view(), name = 'radmi_delete'),
     path('radmi-list/', views.RadmiListView.as_view(), name='radmi_list'),
     path('radmi-create/', views.RadmiCreateView.as_view(), name='radmi_create'),

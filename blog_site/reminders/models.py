@@ -1,5 +1,7 @@
 from django.db import models
 
+from user_reminders.models import SiteUser
+
 
 class Day(models.Model):
     day = models.IntegerField(unique=True)
@@ -15,12 +17,8 @@ class Month(models.Model):
         return self.month
 
 
-class User(models.Model):
-    user_name = models.CharField(max_length=32)
-    user_chat = models.PositiveIntegerField(unique=True)
-
-    def __str__(self):
-        return self.user_name
+class TelegramCod(models.Model):
+    telegram_cod = models.PositiveIntegerField(unique=True)
 
 
 class Reminder(models.Model):
@@ -31,7 +29,7 @@ class Reminder(models.Model):
 
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
     month = models.ForeignKey(Month, on_delete=models.CASCADE)
-    user = models.ManyToManyField(User)
+    user = models.ManyToManyField(SiteUser)
 
 
 class Birthday_boy(models.Model):
@@ -43,4 +41,4 @@ class Birthday_boy(models.Model):
 
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
     month = models.ForeignKey(Month, on_delete=models.CASCADE)
-    user = models.ManyToManyField(User)
+    user = models.ManyToManyField(SiteUser)

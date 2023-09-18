@@ -30,7 +30,7 @@
     <form method="post">
         {% csrf_token %}
 
-        <button type="submit" class="btn btn-danger">Да</button>
+<button type="submit" class="btn btn-danger">Да</button> <a class="btn btn-primary" href="{% url 'blog_site:messages' %}">Нет</a>
     </form>
 </div>
 
