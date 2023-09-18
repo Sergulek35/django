@@ -19,7 +19,7 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = SiteUser
-        fields = ['username', 'password1', 'password2', 'image', 'user_chat']
+        fields = ['username', 'password1', 'password2', 'email', 'image', 'user_chat']
         labels = {
             'user_chat': _('Код из телеграм(10-цифр)'),
             'image': _('Фото профиля (необезательно)'),

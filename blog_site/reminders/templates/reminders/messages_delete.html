@@ -20,27 +20,25 @@
                 <div class="col-lg-8 col-xl-6">
 
 
-
-
-    Удалить это напоминание ?
+                    Удалить это напоминание ?
                     <hr>
-           <h5>[ {{object.reminder}} ]</h5>
-        <hr>
-    Вы уверены?
-    <form method="post">
-        {% csrf_token %}
+                    <h5>[ {{object.reminder}} ]</h5>
+                    <hr>
+                    Вы уверены?
+                    <form method="post">
+                        {% csrf_token %}
 
-<button type="submit" class="btn btn-danger">Да</button> <a class="btn btn-primary" href="{% url 'blog_site:messages' %}">Нет</a>
-    </form>
-</div>
+                        <button type="submit" class="btn btn-danger">Да</button>
 
-
+                    </form>
                 </div>
+
+
             </div>
         </div>
     </div>
-</section>
 
+</section>
 
 
 {% endblock %}
