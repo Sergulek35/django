@@ -2,8 +2,9 @@ from datetime import datetime
 from django.urls import reverse_lazy
 from .forms import HumanForm, MessagesForm
 from reminders.models import Birthday_boy, Reminder
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.views.generic.base import ContextMixin
+
 
 date_time = datetime.now()
 
@@ -86,3 +87,23 @@ class MessagDeleteView(DeleteView, HumanContextMixin):
     model = Reminder
     template_name = 'reminders/messages_delete.html'
     success_url = reverse_lazy('blog_site:messages')
+
+
+class MessagUpdataView(UpdateView, HumanContextMixin):
+    fields = ['reminder', 'day', 'month']
+
+    model = Reminder
+    success_url = reverse_lazy('blog_site:messages')
+    template_name = 'reminders/messages_create.html'
+
+
+class RadmiUpdataView(UpdateView, HumanContextMixin):
+
+    fields = ['surname', 'name', 'day', 'month']
+    model = Birthday_boy
+
+    success_url = reverse_lazy('blog_site:radmi_list')
+    template_name = 'reminders/radmi_create.html'
+
+
+

@@ -60,18 +60,24 @@ def birthday(message):
     # print(message)
     user_chat = SiteUser.objects.get(user_chat=message.chat.id)
     birthday = Birthday_boy.objects.filter(user=user_chat)
-    for i in birthday:
-        chat_id = message.chat.id
-        bot.send_message(chat_id, i)
+    chat_id = message.chat.id
+    if birthday:
+        for i in birthday:
+            bot.send_message(chat_id, i)
+    else:
+        bot.send_message(chat_id, 'У вас нет именинников 😔')
 
 
 @bot.message_handler(commands=['reminder'])
 def reminder(message):
     user_chat = SiteUser.objects.get(user_chat=message.chat.id)
     reminder = Reminder.objects.filter(user=user_chat)
-    for i in reminder:
-        chat_id = message.chat.id
-        bot.send_message(chat_id, i)
+    chat_id = message.chat.id
+    if reminder:
+        for i in reminder:
+            bot.send_message(chat_id, i)
+    else:
+        bot.send_message(chat_id, 'У вас нет сообщений, напоминаний 😔')
 
 
 def add_bot():
@@ -114,10 +120,10 @@ def add_bot():
         except ValueError:
             bot.send_message(chat_id, 'Нет даты или дата введена не цифрами 😔')
         except ObjectDoesNotExist:
-            bot.send_message(chat_id, 'Не верный ввод ДНЯ или МЕСЯЦА рождения 😔')
+            bot.send_message(chat_id, 'Не верный ввод ДНЯ или МЕСЯЦА 😔')
         except IndexError:
             bot.send_message(chat_id, 'Не верный формат ввода 😔\n'
-                                'всего одно слово или буква')
+                                      'всего одно слово или буква')
 
         info.clear()
 

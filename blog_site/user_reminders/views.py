@@ -18,8 +18,9 @@ class UserCreateView(CreateView):
 
     def form_valid(self, form):
         user_chat = form.cleaned_data['user_chat']
-        message = 'Регистрация на сайте прошла успешно!'
+        message = 'Регистрация на сайте прошла успешно 😊'
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={user_chat}&text={message}"
         requests.get(url).json()  # отправляем
 
         return super().form_valid(form)
+
