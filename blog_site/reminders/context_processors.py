@@ -2,7 +2,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from reminders.models import Birthday_boy
 
-flag = bool
 
 def name_bot(request):
     return {"name_bot": 'TummyBot'}
