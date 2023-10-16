@@ -64,6 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'reminders.context_processors.name_bot',
+                'reminders.context_processors.story',
             ],
         },
     },

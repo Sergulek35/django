@@ -24,6 +24,7 @@
         <img src="{% static 'assets/non_avatar.png' %}" width="200">
         {% endif %}
 
+
         <div class="row gx-5 align-items-center">
 
             <div class="col-xxl-5">
@@ -31,8 +32,10 @@
                 <!-- Header text content-->
 
                 <div class="text-center text-xxl-start">
-
-
+            {% if story %}
+                  <span style="color: green;">Вы добавили:</span>
+               <p>{{story}}</p>
+                     {% endif %}
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
 
                     </div>
@@ -55,5 +58,14 @@
     </div>
 
 </header>
+<hr>
+    <div class="row gx-5 justify-content-center">
+            <div class="col-xxl-8">
+                <div class="text-center my-3">
 
+                    <h4 class="display-5 fw-bolder"><span class="text-gradient d-inline">{{name_bot}}</span></h4>
+
+                    </div>
+                </div>
+            </div>
 {% endblock %}
