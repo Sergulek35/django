@@ -28,7 +28,7 @@ def date_time():
     # Если даты совпадают, отправляем сообщение
     user_chat = SiteUser.objects.all()
     for us in user_chat:
-        for i in Birthday_boy.objects.filter(user=us.id):
+        for i in Birthday_boy.objects.select_related('day', 'month').filter(user=us.id):
             date_birthday = float(f'{i.day}.{i.month.id}')
             if date_birthday == date_now:
                 chat_id = us.user_chat
@@ -38,7 +38,7 @@ def date_time():
                 url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
                 requests.get(url).json()  # отправляем
 
-        for rem in Reminder.objects.filter(user=us.id):
+        for rem in Reminder.objects.select_related('day', 'month').filter(user=us.id):
             date_reminder = float(f'{rem.day}.{rem.month.id}')
             if date_reminder == date_now:
                 chat_id = us.user_chat

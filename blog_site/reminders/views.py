@@ -31,7 +31,7 @@ class RadmiListView(ListView, HumanContextMixin):
     context_object_name = 'birthday'
 
     def get_queryset(self):
-        return Birthday_boy.objects.filter(user=self.request.user)
+        return Birthday_boy.objects.select_related('day', 'month').filter(user=self.request.user)
 
 
 class RadmiCreateView(CreateView, HumanContextMixin):
@@ -64,7 +64,7 @@ class MessagListView(ListView, HumanContextMixin):
     paginate_by = 1
 
     def get_queryset(self):
-        return Reminder.objects.filter(user=self.request.user)
+        return Reminder.objects.select_related('day', 'month').filter(user=self.request.user)
 
 
 class MessagCreateView(CreateView, HumanContextMixin):
