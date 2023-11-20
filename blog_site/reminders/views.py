@@ -8,7 +8,6 @@ from django.views.generic.base import ContextMixin
 
 date_time = datetime.now()
 
-
 class HumanContextMixin(ContextMixin):
 
     def get_context_data(self, *args, **kwargs):
@@ -62,6 +61,7 @@ class MessagListView(ListView, HumanContextMixin):
     model = Reminder
     template_name = 'reminders/messages.html'
     context_object_name = 'reminder'
+    paginate_by = 1
 
     def get_queryset(self):
         return Reminder.objects.filter(user=self.request.user)

@@ -6,9 +6,9 @@ from .forms import RegistrationForm
 from django.views.generic import CreateView
 from .models import SiteUser
 
+
 class UserLoginView(LoginView):
     template_name = 'user_reminders/login.html'
-
 
 class UserCreateView(CreateView):
     model = SiteUser

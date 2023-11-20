@@ -1,7 +1,10 @@
 from django.db import models
-
 from user_reminders.models import SiteUser
 
+# class UserManager(models.Manager):
+#
+#     def get_queryset(self):
+#         return super().get_queryset().filter(user=self.request.user)
 
 class Day(models.Model):
     day = models.IntegerField(unique=True)
@@ -33,6 +36,8 @@ class Reminder(models.Model):
 
 
 class Birthday_boy(models.Model):
+    # objects = models.Manager()
+    # user_objects = UserManager()
     name = models.CharField(max_length=32, default='default name')
     surname = models.CharField(max_length=32)
 
@@ -42,3 +47,4 @@ class Birthday_boy(models.Model):
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
     month = models.ForeignKey(Month, on_delete=models.CASCADE)
     user = models.ManyToManyField(SiteUser)
+

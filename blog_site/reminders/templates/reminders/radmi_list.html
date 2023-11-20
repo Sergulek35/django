@@ -34,9 +34,11 @@
                        <a class = "btn" href="{% url 'blog_site:radmi_update' pk=i.pk %}" title="Изменить">&#10000; </a>
                                 {% endfor %}
                                 <hr>
+                                <hr>
                                 <p>
                                  <a class="btn btn-success" title="Добавить"  href="{% url 'blog_site:radmi_create' %}">+</a>
                                 </p>
+
                             </div>
                             <img class="img-fluid" src="{% static 'assets/present.png' %}" alt="..."/>
                         </div>
@@ -48,5 +50,13 @@
 
 </section>
 
+ <div class="row gx-5 justify-content-center">
+            <div class="col-xxl-8">
+                <div class="text-center my-3">
 
+                    <h4 class="display-5 fw-bolder"><span class="text-gradient d-inline">{{name_bot}}</span></h4>
+<hr>
+                    </div>
+                </div>
+            </div>
 {% endblock %}

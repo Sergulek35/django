@@ -6,6 +6,14 @@
 {% load static %}
 {% block index %}
 <!-- Projects Section-->
+
+<style>
+   .outline {
+    border: 1px solid orange;
+    padding: 0 10px;
+   }
+
+</style>
 <section class="py-5">
     <div class="container px-5 mb-5">
         <div class="text-center mb-5">
@@ -23,19 +31,41 @@
                                    href="{% url 'blog_site:messages_create' %}">Новое сообщение, напоминание</a>
 
 
-                                <h2 class="fw-bolder">Ваши напоминания ({{count_messages}}) </h2>
+                                <h2 class="fw-bolder">Всего напоминаний ({{count_messages}}) </h2>
 
                                 <p> {%for i in reminder%}
                                 <hr>
-                                <p>{{i}}</p>
 
+                                <div class="outline">
+                                    <b>{{ page_obj.number }})</b>
+                                    <p>
+                                  <i>  {{i.reminder}}</i>
+                                </div>
+                                <p>Напомнить - {{i.day}} : {{i.month}}</p>
+                                <hr>
                                 <a href="{% url 'blog_site:messages_delete' pk=i.pk %}" style="color: red;">удалить</a>
-                                                /
+                                /
                                 <a href="{% url 'blog_site:messages_update' pk=i.pk %}"> изменить</a>
 
                                 {% endfor %}
-                            </div>
 
+                                <hr>
+                                <div class="pagination">
+                                 <span class="step-links">
+        {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}" style="text-align: center"><button>&laquo;</button></a>
+                         <a href="?page=1" style="text-align: center"><button>1</button></a>
+
+        {% endif %}
+           ......<a href="{% url 'blog_site:messages_create' %}" title="Добавить" style="text-align: center"><button>+</button></a>......
+        {% if page_obj.has_next %}
+
+    <a href="?page={{ page_obj.paginator.num_pages }}" style="text-align: center"><button>{{ page_obj.paginator.num_pages }}</button></a>
+    <a href="?page={{ page_obj.next_page_number }}" style="text-align: center"><button>&raquo;</button></a>
+        {% endif %}
+    </span>
+                                </div>
+                            </div>
                             <img class="img-fluid" src="{% static 'assets/reminder.png' %}" alt="..."/>
                         </div>
                     </div>
@@ -43,8 +73,15 @@
             </div>
         </div>
     </div>
-
 </section>
 
+ <div class="row gx-5 justify-content-center">
+            <div class="col-xxl-8">
+                <div class="text-center my-3">
 
+                    <h4 class="display-5 fw-bolder"><span class="text-gradient d-inline">{{name_bot}}</span></h4>
+<hr>
+                    </div>
+                </div>
+            </div>
 {% endblock %}
